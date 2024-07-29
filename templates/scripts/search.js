@@ -12,6 +12,10 @@ const searchFetch = async (value) => {
     return await req.json();
 };
 
+const artistsFetch = async () => {
+    window.location.href = "/artists?search=" + search.value
+};
+
 const searchLink = (content, href) => {
     const li = document.createElement("li");
     linkClasses.forEach(c => li.classList.add(c));
@@ -27,10 +31,11 @@ export function initializeSearch() {
     const searchInput = document.getElementById("search");
     const resultsContainer = document.getElementById("results");
 
-    if (searchInput && resultsContainer) {
-        let debounceTimer;
+    let search;
 
+    if (searchInput && resultsContainer) {
         searchInput.addEventListener("input", async (e) => {
+            search = e.target.value.trim()
             resultsContainer.textContent = "";
             if (e.target.value.trim().length !== 0) {
                 const json = await searchFetch(e.target.value);
@@ -87,7 +92,7 @@ export function initializeSearch() {
         });
 
         // Keyboard navigation
-        searchInput.addEventListener('keydown', (e) => {
+        searchInput.addEventListener('keydown', async (e) => {
             const items = resultsContainer.querySelectorAll('li');
             let currentIndex = Array.from(items).findIndex(item => item.classList.contains('bg-gray-200'));
 
@@ -102,9 +107,7 @@ export function initializeSearch() {
                     break;
                 case 'Enter':
                     e.preventDefault();
-                    if (currentIndex !== -1) {
-                        items[currentIndex].querySelector('a').click();
-                    }
+                    await artistsFetch(search)
                     return;
                 default:
                     return;

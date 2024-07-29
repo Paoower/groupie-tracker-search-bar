@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Artists | Groupie Tracker</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script src="./scripts/main.js" type="module" defer></script>
+	<script src="./scripts/filters.js" defer></script>
 	<link rel="shortcut icon"
 		href="https://static.vecteezy.com/system/resources/previews/002/986/080/non_2x/letter-g-logo-design-template-free-vector.jpg"
 		type="image/x-icon">
@@ -20,6 +22,7 @@
 			box-shadow: 0 0 0 1px #C6C6C6;
 			cursor: pointer;
 		}
+
 		input[type=range]::-moz-range-thumb {
 			-webkit-appearance: none;
 			pointer-events: all;
@@ -30,13 +33,16 @@
 			box-shadow: 0 0 0 1px #C6C6C6;
 			cursor: pointer;
 		}
+
 		input[type=range]::-webkit-slider-thumb:hover {
 			background: #f7f7f7;
 		}
+
 		input[type=range]::-webkit-slider-thumb:active {
 			box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
 			-webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
 		}
+
 		input[type="range"] {
 			-webkit-appearance: none;
 			appearance: none;
@@ -48,8 +54,9 @@
 		}
 	</style>
 </head>
+
 <body class="dark:bg-slate-900">
-	<div class="flex justify-between items-center dark:text-white dark:bg-slate-800 bg-gray-100 p-5 px-6 relative">
+	<div class="flex justify-between items-center dark:text-white dark:bg-slate-800 bg-gray-100 p-5 px-6 relative z-10">
 		<a href="/"><img
 				src="https://static.vecteezy.com/system/resources/previews/002/986/080/non_2x/letter-g-logo-design-template-free-vector.jpg"
 				alt="Logo" class="h-10"></a>
@@ -69,11 +76,10 @@
 		</div>
 		<div class="flex gap-4">
 			<a href="/artists" class="text-md">Artists</a>
-			<a href="/concerts" class="text-md">Concert Dates</a>
 		</div>
 	</div>
-	<div class="flex max-auto justify-center text-white my-10">
-		<div class="flex flex-col justify-center w-56 bg-slate-800 p-4">
+	<div class="flex flex-col fixed top-0 left-0 pt-[80px] h-screen text-white w-72 bg-slate-800">
+		<div class="flex flex-col justify-center p-4">
 			<h1 class="font-semibold text-sm mb-4">Creation Date</h1>
 			<div class="relative w-full max-w-xl grid">
 				<input type="range" min="1950" max="2024" name="fromCreationYear" value="1950" id="slider-1"
@@ -86,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-col justify-center w-56 bg-slate-800 p-4 -z-10">
+		<div class="flex flex-col justify-center bg-slate-800 p-4">
 			<h1 class="font-semibold text-sm mb-4">First Album Date</h1>
 			<div class="relative w-full max-w-xl grid">
 				<input type="range" min="1950" max="2024" name="fromAlbumYear" value="1950" id="slider-3"
@@ -99,13 +105,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-col justify-center w-56 bg-slate-800 p-4 -z-10">
+		<div class="flex flex-col justify-center bg-slate-800 p-4">
 			<h1 class="font-semibold text-sm mb-4">Members</h1>
 			<div class="relative w-full max-w-xl grid">
-				<input type="range" min="1" max="8" name="membersMin" value="1" id="slider-5"
-					class="absolute w-full">
-				<input type="range" min="1" max="8" name="membersMax" value="8" id="slider-6"
-					class="absolute w-full">
+				<input type="range" min="1" max="8" name="membersMin" value="1" id="slider-5" class="absolute w-full">
+				<input type="range" min="1" max="8" name="membersMax" value="8" id="slider-6" class="absolute w-full">
 				<div class="flex justify-between mt-4">
 					<label for="slider-5" class="text-sm">1</label>
 					<label for="slider-6" class="text-sm">8</label>
@@ -114,21 +118,22 @@
 		</div>
 		<div class="locations flex flex-col gap-1 bg-slate-800 p-4">
 			<div class="flex gap-1 items-center">
-				<p class="text-sm">Locations :</p>
+				<p class="font-semibold text-sm mb-4">Locations :</p>
 			</div>
 			<select name="location" id="location"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">All Locations</option>
-                {{range .Locations}}
-                <option value="{{.}}">{{.}}</option>
-                {{end}}
-            </select>
+				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+				<option value="">All Locations</option>
+				{{range .Locations}}
+				<option value="{{.}}">{{.}}</option>
+				{{end}}
+			</select>
 		</div>
 	</div>
-	<div class="flex mx-auto justify-center">
-		<div class="grid grid-cols-3 gap-10 text-white" id="artists-container">
+	<div class="flex ml-72 p-10">
+		<div class="grid grid-cols-4 gap-10 text-white" id="artists-container">
 			{{template "artist_block" .Artists}}
 		</div>
 	</div>
 </body>
+
 </html>

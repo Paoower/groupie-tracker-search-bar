@@ -10,8 +10,21 @@ import (
 )
 
 func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
+	filtered := utils.ArtistsJson
+
+	search := r.URL.Query().Get("search")
+
+	if search != "" {
+		filtered = utils.Filter(search)
+	}
+
+	if r.Method != "GET" {
+		ErrorHandler(w, errors.New("400 | Bad request"))
+		return
+	}
+
 	data := datatypes.ArtistsPage{
-		Artists:   utils.ArtistsJson,
+		Artists:   filtered,
 		Locations: utils.GetAllLocations(utils.LocationsJson),
 	}
 

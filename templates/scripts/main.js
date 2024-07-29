@@ -19,11 +19,14 @@ function loadGoogleMapsScript(locationData) {
 document.addEventListener('DOMContentLoaded', () => {
     initializeArtist();
     initializeSearch();
-    const locationDataElement = document.getElementById('locationData');
-    if (locationDataElement) {
-        const locationData = JSON.parse(locationDataElement.textContent);
-        loadGoogleMapsScript(locationData);
-    } else {
-        console.error('Location data not found');
+    if (window.location.pathname.includes("/artist?id=")) {
+        console.log(true)
+        const locationDataElement = document.getElementById('locationData');
+        if (locationDataElement) {
+            const locationData = JSON.parse(locationDataElement.textContent);
+            loadGoogleMapsScript(locationData);
+        } else {
+            console.error('Location data not found');
+        }
     }
 });
