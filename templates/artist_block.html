@@ -1,13 +1,22 @@
 {{define "artist_block"}}
-	{{range .}}
-		<a href="/artist?id={{.Id}}">
-			<div class="flex flex-col gap-2" style="background-image: url()">
-				<img src="{{.Image}}" alt="{{.Image}}" class="rounded-md w-[400px] min-w-[200px]">
-				<div class="flex justify-between items-center">
-					<p>{{.Name}}</p>
-					<p class="text-sm text-gray-100">{{.CreationDate}}</p>
-				</div>
-			</div>
-		</a>
-	{{end}}
+    {{range .}}
+    <div class="artist-card">
+        <div class="artist-card-inner">
+            <div class="artist-card-front">
+                <img src="{{.Image}}" alt="{{.Name}}" class="w-full h-full object-cover">
+            </div>
+            <div class="artist-card-back">
+                <h2 class="text-2xl font-bold mb-2">{{.Name}}</h2>
+                <p class="text-sm mb-4">Created in {{.CreationDate}}</p>
+                <h3 class="text-lg font-semibold mb-2">Members:</h3>
+                <ul class="mb-4 max-h-32 overflow-y-auto">
+                    {{range .Members}}
+                    <li class="text-sm">{{.}}</li>
+                    {{end}}
+                </ul>
+                <a href="/artist?id={{.Id}}" class="mt-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">View Details</a>
+            </div>
+        </div>
+    </div>
+    {{end}}
 {{end}}

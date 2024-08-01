@@ -52,7 +52,53 @@
 			background-color: #C6C6C6;
 			pointer-events: none;
 		}
-	</style>
+		.artist-card {
+            perspective: 1000px;
+            width: 400px;
+            height: 400px;
+            margin: 1rem;
+        }
+
+        .artist-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            background-color: #1e293b;
+            border-radius: 0.375rem;
+        }
+
+        .artist-card:hover .artist-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .artist-card-front, .artist-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.375rem;
+            overflow: hidden;
+        }
+
+        .artist-card-front {
+            background-color: #1e293b;
+        }
+
+        .artist-card-back {
+            background-color: #1e293b;
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+    </style>
 </head>
 
 <body class="dark:bg-slate-900">
@@ -130,10 +176,10 @@
 		</div>
 	</div>
 	<div class="flex ml-72 p-10">
-		<div class="grid grid-cols-4 gap-10 text-white" id="artists-container">
-			{{template "artist_block" .Artists}}
-		</div>
-	</div>
+        <div class="grid grid-cols-3 gap-8 text-white" id="artists-container">
+            {{template "artist_block" .Artists}}
+        </div>
+    </div>
 </body>
 
 </html>
