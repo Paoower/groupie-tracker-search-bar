@@ -6,10 +6,10 @@
                 <img src="{{.Image}}" alt="{{.Name}}" class="w-full h-full object-cover">
             </div>
             <div class="artist-card-back">
-                <h2 class="text-2xl font-bold mb-2">{{.Name}}</h2>
-                <p class="text-sm mb-4">Created in {{.CreationDate}}</p>
-                <h3 class="text-lg font-semibold mb-2">Members:</h3>
-                <ul class="mb-4 max-h-32 overflow-y-auto">
+                <h2 class="text-2xl font-bold md:mb-2">{{.Name}}</h2>
+                <p class="text-sm md:mb-4">Created in {{.CreationDate}}</p>
+                <h3 class="text-lg font-semibold md:mb-2">Members:</h3>
+                <ul class="md:mb-4 max-h-32 overflow-y-auto">
                     {{range .Members}}
                     <li class="text-sm">{{.}}</li>
                     {{end}}

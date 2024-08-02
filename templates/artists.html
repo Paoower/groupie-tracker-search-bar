@@ -96,17 +96,32 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 1rem;
+            padding: 4rem 1rem;
         }
+		@media only screen and (max-width: 1024px) {
+			.artist-card {
+				width: 200px;
+				height: 200px;
+				padding: 0px;
+			}
+		  }
+
+		  @media only screen and (max-width: 670px) {
+			.artist-card {
+				width: 300px;
+				height: 300px;
+				padding: 0px;
+			}
+		  }
     </style>
 </head>
 
 <body class="dark:bg-slate-900">
-	<div class="flex justify-between items-center dark:text-white dark:bg-slate-800 bg-gray-100 p-5 px-6 relative z-10">
-		<a href="/"><img
+	<div class="flex justify-between items-center dark:text-white dark:bg-slate-800 bg-gray-100 p-5 px-6 relative z-10 gap-4">
+		<a href="/" class="md:block hidden"><img
 				src="https://static.vecteezy.com/system/resources/previews/002/986/080/non_2x/letter-g-logo-design-template-free-vector.jpg"
-				alt="Logo" class="h-10"></a>
-		<div class="absolute left-1/2 -translate-x-1/2 inline-flex flex-col justify-center text-gray-500 w-1/3">
+				alt="Logo" class="h-10 "></a>
+		<div class="md:w-1/3 md:absolute md:left-1/2 md:-translate-x-1/2 inline-flex flex-col justify-center text-gray-500">
 			<div class="relative">
 				<input id="search" type="text"
 					class="w-full p-2 pl-8 rounded border border-gray-200 bg-gray-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent"
@@ -124,7 +139,7 @@
 			<a href="/artists" class="text-md">Artists</a>
 		</div>
 	</div>
-	<div class="flex flex-col fixed top-0 left-0 pt-[80px] h-screen text-white w-72 bg-slate-800">
+	<div id="filters" class="hidden fixed top-0 left-0 w-screen h-screen md:z-10 md:flex flex-col mt-[80px] text-white md:w-72 bg-slate-800">
 		<div class="flex flex-col justify-center p-4">
 			<h1 class="font-semibold text-sm mb-4">Creation Date</h1>
 			<div class="relative w-full max-w-xl grid">
@@ -175,11 +190,16 @@
 			</select>
 		</div>
 	</div>
-	<div class="flex ml-72 p-10">
-        <div class="grid grid-cols-3 gap-8 text-white" id="artists-container">
+	<div class="flex p-0 justify-center md:ml-72 md:p-10">
+        <div class="flex flex-col md:grid grid-cols-3 gap-8 text-white" id="artists-container">
             {{template "artist_block" .Artists}}
         </div>
     </div>
+	<button id="filters-button" class="fixed md:hidden bottom-4 left-4 w-10 h-10 z-20 p-1 bg-slate-900 rounded-full">
+		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-filter" viewBox="0 0 16 16">
+			<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+		</svg>
+	</button>
 </body>
 
 </html>

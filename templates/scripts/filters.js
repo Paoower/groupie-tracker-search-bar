@@ -8,6 +8,8 @@ const data = {
     location: ""
 }
 
+console.log("zizi")
+
 data.fromCreationYear = 1950
 data.toCreationYear = 2024
 data.fromAlbumYear = 1950
@@ -25,6 +27,10 @@ const handleFilter = async () => {
 		document.getElementById("artists-container").innerHTML = text;
 	}
 }
+
+document.getElementById("filters-button").addEventListener("click", () => {
+	document.getElementById("filters").classList.toggle("hidden")
+})
 
 document.querySelectorAll("input[type=range]").forEach(range => {
 	range.addEventListener("input", async e => {
