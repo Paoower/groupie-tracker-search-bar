@@ -10,12 +10,6 @@ Groupie Tracker is a web application that allows users to explore information ab
 - **Search**: Search for artists by name or other details.
 - **Geolocation**: View the locations of an artist's concerts on a map.
 
-## Technologies Used
-
-- **Go**: The backend of the application is built using the Go programming language.
-- **HTML/CSS/JavaScript**: The frontend of the application is built using standard web technologies.
-- **JSON**: Artist, location, and concert date data is stored in JSON files.
-
 ## Project Structure
 
 The project is organized into the following directories:
@@ -27,8 +21,6 @@ The project is organized into the following directories:
 - [utils/](utils/): Contains various utility functions used throughout the application.
 - [json/](json/): Contains the JSON files that store the artist, location, and concert date data.
 - [main.go](main.go): The main entry point of the application.
-
-Sure, here's the updated "Getting Started" section with the git clone instructions:
 
 ## Getting Started
 
