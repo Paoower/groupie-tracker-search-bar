@@ -20,7 +20,7 @@ The project is organized into the following directories:
 - [templates/scripts/](templates/scripts/): Contains the JavaScript files used to add interactivity to the user interface.
 - [utils/](utils/): Contains various utility functions used throughout the application.
 - [json/](json/): Contains the JSON files that store the artist, location, and concert date data.
-- [main.go](main.go): The main entry point of the application.
+- [main.go](main.go): The main program of the application.
 
 ## Getting Started
 
