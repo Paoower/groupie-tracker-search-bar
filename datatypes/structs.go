@@ -65,18 +65,18 @@ type Relation struct {
 }
 
 type ArtistsPage struct {
-	Artists   []Artist
-	Locations []string
+	Artists      []Artist
+	Locations    []string
+	MemberCounts []int
 }
 
 type FiltersRequest struct {
-	FromCreationYear   int    `json:"fromCreationYear"`
-	ToCreationYear     int    `json:"toCreationYear"`
-	FromFirstAlbumYear int    `json:"fromAlbumYear"`
-	ToFirstAlbumYear   int    `json:"toAlbumYear"`
-	MembersMin         int    `json:"membersMin"`
-	MembersMax         int    `json:"membersMax"`
-	Location           string `json:"location"`
+    FromCreationYear   int    `json:"fromCreationYear"`
+    ToCreationYear     int    `json:"toCreationYear"`
+    FromFirstAlbumYear int    `json:"fromAlbumYear"`
+    ToFirstAlbumYear   int    `json:"toAlbumYear"`
+    Members            []int  `json:"members"`
+    Location           string `json:"location"`
 }
 
 type ErrorPage struct {

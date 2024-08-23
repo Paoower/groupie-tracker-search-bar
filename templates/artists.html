@@ -12,6 +12,13 @@
 		href="https://static.vecteezy.com/system/resources/previews/002/986/080/non_2x/letter-g-logo-design-template-free-vector.jpg"
 		type="image/x-icon">
 	<style>
+		 input[type="checkbox"]:checked + span {
+        @apply bg-blue-500 border-blue-500;
+    }
+
+    input[type="checkbox"]:checked + span svg {
+        @apply block;
+    }
 		input[type=range]::-webkit-slider-thumb {
 			-webkit-appearance: none;
 			pointer-events: all;
@@ -168,13 +175,18 @@
 		</div>
 		<div class="flex flex-col justify-center bg-slate-800 p-4">
 			<h1 class="font-semibold text-sm mb-4">Members</h1>
-			<div class="relative w-full max-w-xl grid">
-				<input type="range" min="1" max="8" name="membersMin" value="1" id="slider-5" class="absolute w-full">
-				<input type="range" min="1" max="8" name="membersMax" value="8" id="slider-6" class="absolute w-full">
-				<div class="flex justify-between mt-4">
-					<label for="slider-5" class="text-sm">1</label>
-					<label for="slider-6" class="text-sm">8</label>
-				</div>
+			<div class="grid grid-cols-2 gap-2">
+				{{range .MemberCounts}}
+				<label class="flex items-center">
+					<input type="checkbox" name="members" value="{{.}}" class="hidden peer">
+					<span class="w-5 h-5 border border-gray-300 rounded-full flex items-center justify-center mr-2 peer-checked:bg-blue-500 peer-checked:border-blue-500">
+						<svg class="w-3 h-3 text-white hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+						</svg>
+					</span>
+					{{.}}
+				</label>
+				{{end}}
 			</div>
 		</div>
 		<div class="locations flex flex-col gap-1 bg-slate-800 p-4">

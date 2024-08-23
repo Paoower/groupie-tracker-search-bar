@@ -43,13 +43,19 @@ func FiltersHandler(w http.ResponseWriter, r *http.Request) {
 			match = false
 		}
 
-		if request.MembersMin == request.MembersMax && len(artist.Members) != request.MembersMin {
-			match = false
-		}
-
-		if len(artist.Members) < request.MembersMin || len(artist.Members) > request.MembersMax {
-			match = false
-		}
+		if len(request.Members) > 0 {
+            memberCount := len(artist.Members)
+            memberMatch := false
+            for _, count := range request.Members {
+                if memberCount == count {
+                    memberMatch = true
+                    break
+                }
+            }
+            if !memberMatch {
+                match = false
+            }
+        }
 
 		// Check location
 		if request.Location != "" {

@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"sort"
 )
 
 func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,10 +24,22 @@ func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := datatypes.ArtistsPage{
-		Artists:   filtered,
-		Locations: utils.GetAllLocations(utils.LocationsJson),
+	// Get unique member counts
+	memberCounts := make(map[int]bool)
+	for _, artist := range utils.ArtistsJson {
+		memberCounts[len(artist.Members)] = true
 	}
+
+	data := datatypes.ArtistsPage{
+		Artists:      filtered,
+		Locations:    utils.GetAllLocations(utils.LocationsJson),
+		MemberCounts: make([]int, 0, len(memberCounts)),
+	}
+
+	for count := range memberCounts {
+		data.MemberCounts = append(data.MemberCounts, count)
+	}
+	sort.Ints(data.MemberCounts)
 
 	t, err := template.ParseFiles("templates/artists.html", "templates/artist_block.html")
 	if err != nil {

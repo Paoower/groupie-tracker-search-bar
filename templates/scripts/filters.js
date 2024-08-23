@@ -3,8 +3,7 @@ const data = {
     toCreationYear: 2024,
     fromAlbumYear: 1950,
     toAlbumYear: 2024,
-    membersMin: 1,
-    membersMax: 8,
+    members: [],
     location: ""
 }
 
@@ -14,6 +13,17 @@ data.fromCreationYear = 1950
 data.toCreationYear = 2024
 data.fromAlbumYear = 1950
 data.toAlbumYear = 2024
+
+document.querySelectorAll("input[type=checkbox][name=members]").forEach(checkbox => {
+    checkbox.addEventListener("change", e => {
+        if (e.target.checked) {
+            data.members.push(parseInt(e.target.value));
+        } else {
+            data.members = data.members.filter(value => value !== parseInt(e.target.value));
+        }
+        handleFilter();
+    });
+});
 
 const handleFilter = async () => {
 	reqOptions = {
@@ -54,20 +64,6 @@ document.querySelectorAll("input[type=range]").forEach(range => {
 			}
 		}
 		if (e.target.id == "slider-4") {
-			let s = e.target.closest("div").querySelectorAll("input[type=range]")[0];
-			if (parseInt(e.target.value) < parseInt(s.value)) {
-				e.target.value = s.value;
-			}
-		}
-
-		if (e.target.id == "slider-5") {
-			let s = e.target.closest("div").querySelectorAll("input[type=range]")[0];
-			if (parseInt(e.target.value) > parseInt(s.value)) {
-				e.target.value = s.value;
-			}
-		}
-
-		if (e.target.id == "slider-6") {
 			let s = e.target.closest("div").querySelectorAll("input[type=range]")[0];
 			if (parseInt(e.target.value) < parseInt(s.value)) {
 				e.target.value = s.value;
