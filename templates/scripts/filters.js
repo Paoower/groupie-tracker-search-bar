@@ -39,7 +39,7 @@ const handleFilter = async () => {
 }
 
 document.getElementById("filters-button").addEventListener("click", () => {
-	document.getElementById("filters").classList.toggle("hidden")
+	document.getElementById("filters").classList.toggle("-translate-x-full")
 })
 
 document.querySelectorAll("input[type=range]").forEach(range => {
