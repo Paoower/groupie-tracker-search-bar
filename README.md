@@ -1,4 +1,4 @@
-# Groupie Tracker
+# Groupie Tracker Filters
 
 Groupie Tracker is a web application that allows users to explore information about various musical artists, including their members, creation date, first album release, locations, concert dates, and relationships between artists.
 
