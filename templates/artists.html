@@ -134,7 +134,6 @@
 		#filters {
 			transition: transform 0.3s ease-in-out;
             opacity: 1;
-            pointer-events: none;
         }
 		#filters.active {
 			transform: translateX(0);
@@ -160,10 +159,7 @@
 </head>
 
 <body class="dark:bg-slate-900">
-    <div class="flex justify-between items-center dark:text-white dark:bg-slate-800 bg-gray-100 p-5 px-6 relative z-20 gap-4">
-		<a href="/" class="md:block hidden"><img
-				src="https://static.vecteezy.com/system/resources/previews/002/986/080/non_2x/letter-g-logo-design-template-free-vector.jpg"
-				alt="Logo" class="h-10 "></a>
+    <div class="flex justify-between items-center dark:text-white dark:bg-slate-800 bg-gray-100 p-6 px-6 relative z-20 gap-4">
 		<div class="md:w-1/3 md:absolute md:left-1/2 md:-translate-x-1/2 inline-flex flex-col justify-center text-gray-500">
 			<div class="relative">
 				<input id="search" type="text"
@@ -183,7 +179,10 @@
 		</div>
 	</div>
 	<div class="flex flex-col lg:flex-row">
-        <div id="filters" class="fixed lg:relative top-0 left-0 w-full h-screen lg:w-72 bg-slate-800 text-white z-40 overflow-y-auto lg:translate-x-0 -translate-x-full transition-transform duration-300 ease-in-out">
+        <div id="filters" class="fixed top-0 left-0 w-full h-screen lg:w-72 bg-slate-800 text-white z-40 overflow-y-auto lg:translate-x-0 -translate-x-full transition-transform duration-300 ease-in-out">
+			<a href="/" class="md:block hidden p-5"><img
+				src="https://static.vecteezy.com/system/resources/previews/002/986/080/non_2x/letter-g-logo-design-template-free-vector.jpg"
+				alt="Logo" class="h-10 "></a>
 			<div class="flex flex-col justify-center p-4">
 			<h1 class="font-semibold text-sm mb-4">Creation Date</h1>
 			<div class="relative w-full max-w-xl grid">
@@ -239,7 +238,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="flex-grow p-4 lg:p-10">
+	<div class="flex-grow p-4 lg:p-10 lg:pl-80">
 		<div class="flex flex-wrap justify-center" id="artists-container">
 			{{template "artist_block" .Artists}}
 		</div>
